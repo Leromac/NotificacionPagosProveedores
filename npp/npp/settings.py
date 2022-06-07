@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'supplier',
     'log',
     'notification',
+    'main',
 ]
 
 MIDDLEWARE = [
