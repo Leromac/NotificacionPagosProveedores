@@ -16,9 +16,14 @@ Including another URLconf
 from unittest.mock import patch
 from django.contrib import admin
 from django.urls import path
-from main import views
+from main import views as m
+from supplier import views as s
+from notification import views as n
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
+    path('index/', m.index, name='index'),
+    path('supplier/', s.supplierIndex, name='supplierIndex'),
+    path('notification/', n.notificationIndex, name='notificationIndex'),
 ]
