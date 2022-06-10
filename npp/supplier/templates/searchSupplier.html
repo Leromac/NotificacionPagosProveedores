@@ -1,0 +1,16 @@
+
+{% extends "baseTemplateSupplier.html" %}
+{% block title %}
+    <title>Search Supplier</title>
+{% endblock %}
+{% block content %}
+<form action="">
+    <label for="nit">Digite Nit Proveedor</label>
+    <input type="text" name="nit">
+    <button type="submit">Buscar</button>
+</form>
+{% endblock %}
+
+{% block menu %}
+    <a href="{% url 'supplierIndex' %}">Back</a>
+{% endblock %}

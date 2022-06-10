@@ -25,5 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', m.index, name='index'),
     path('supplier/', s.supplierIndex, name='supplierIndex'),
+    path('supplier/search/', s.searchSupplier, name='searchSupplier'),
     path('notification/', n.notificationIndex, name='notificationIndex'),
 ]

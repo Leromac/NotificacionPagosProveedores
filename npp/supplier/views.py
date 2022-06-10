@@ -8,3 +8,11 @@ def supplierIndex(request):
         request,
         'supplierIndex.html'
     )
+
+def searchSupplier(request):
+    pass
+
+    return render(
+        request,
+        'searchSupplier.html'
+    )
