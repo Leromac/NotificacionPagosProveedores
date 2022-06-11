@@ -26,5 +26,6 @@ urlpatterns = [
     path('index/', m.index, name='index'),
     path('supplier/', s.supplierIndex, name='supplierIndex'),
     path('supplier/search/', s.searchSupplier, name='searchSupplier'),
+    path('supplier/add/', s.addSupplier, name='addSupplier'),
     path('notification/', n.notificationIndex, name='notificationIndex'),
 ]

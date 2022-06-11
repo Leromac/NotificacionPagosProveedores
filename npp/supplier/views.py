@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import searchSupplierForm, addSupplierForm
 
 # Create your views here.
 def supplierIndex(request):
@@ -9,10 +10,28 @@ def supplierIndex(request):
         'supplierIndex.html'
     )
 
-def searchSupplier(request):
-    pass
-
+def addSupplier(request):
+    form = addSupplierForm()
+    
+    if request.method == 'POST':
+        form = addSupplierForm(request.POST)
+        
+        form.save()
+    
     return render(
         request,
-        'searchSupplier.html'
+        'addSupplier.html',
+        {'formAddSupplier': form}
+    )
+    
+def searchSupplier(request):
+    form = searchSupplierForm()
+    
+    if request.method == 'POST':
+        form = searchSupplierForm(request.POST)
+    
+    return render(
+        request,
+        'searchSupplier.html',
+        {'formSearchSupplier': form}
     )

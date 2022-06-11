@@ -1,13 +1,13 @@
 
 {% extends "baseTemplateSupplier.html" %}
 {% block title %}
-    <title>Search Supplier</title>
+    <title>Add Supplier</title>
 {% endblock %}
 {% block content %}
     <form action="" method="post">
         {% csrf_token %}
-        {{ formSearchSupplier.as_p }} 
-        <input type="submit" value="Consultar" />
+        {{ formAddSupplier.as_p }} 
+        <input type="submit" value="Guardar" />
     </form>
 {% endblock %}
 
