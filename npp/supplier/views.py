@@ -1,5 +1,7 @@
+import email
 from django.shortcuts import render
 from .forms import searchSupplierForm, addSupplierForm
+from .models import supplier
 
 # Create your views here.
 def supplierIndex(request):
@@ -15,6 +17,10 @@ def addSupplier(request):
     
     if request.method == 'POST':
         form = addSupplierForm(request.POST)
+        
+        #supplier.taxIdentificationNumber = form.taxIdentificationNumber
+        #supplier.companyName = form.companyName
+        #supplier.email = form.email
         
         form.save()
     
