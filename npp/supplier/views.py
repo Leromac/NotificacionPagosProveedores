@@ -18,10 +18,6 @@ def addSupplier(request):
     if request.method == 'POST':
         form = addSupplierForm(request.POST)
         
-        #supplier.taxIdentificationNumber = form.taxIdentificationNumber
-        #supplier.companyName = form.companyName
-        #supplier.email = form.email
-        
         form.save()
     
     return render(

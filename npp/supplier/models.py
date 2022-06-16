@@ -1,12 +1,15 @@
 from django.db import models
+from django.forms import ModelForm
 
 # Create your models here.
 
 class supplier(models.Model):
-    taxIdentificationNumber = models.CharField(max_length=12)
-    companyName = models.CharField(max_length=300)
-    email = models.CharField(max_length=100)
-    
+    taxIdentificationNumber = models.CharField(name="taxIdentificationNumber", max_length=12)
+    companyName = models.CharField(name="companyName", max_length=300)
+    email = models.EmailField(name="email", max_length=100)
+   
+        
+    '''
     def get_queryset(nit):
         listaRs = []
         listaEnvio = []
@@ -34,3 +37,4 @@ class supplier(models.Model):
 
     def __str__(self):
         return self.nit
+'''
