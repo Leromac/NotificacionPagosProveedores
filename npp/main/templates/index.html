@@ -4,12 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
     <title>Notificacion Pagos Proveedores</title>
+    {% load static %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="{% static 'main/css/estilos.css' %}">
+    
 </head>
 <body>
-    <h1>Bienvenido a la seccion para envio de notificaciones a los proveedores.</h1>
+    
+       <div class="contenedor">
+            <div class="contenedor-logo">
+                <img src= "{% static 'main/images/astivik.jpg' %}" alt="astivik ">
+            </div>
+            <h1>Bienvenido a la seccion 
+                para envio de notificaciones 
+                a los proveedores 
+            </h1>
+		 <div class="contenedor-botones">
+			<a href="{% url 'supplierIndex' %}">
+                <button class="boton supplier">
+                    <div class="icono">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                        </svg>
+                    </div>	
+                    <span>PROVEEDORES</span>
+                </button>
+            </a>
+            <a href="{% url 'notificationIndex' %}">
+                <button class="boton notification">
+                    <div class="icono">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                        </svg>
+                    </div>
+                    <span>NOTIFICACIONES</span>
+                </button>
+            </a>
+		</div>
+	</div>
 
-    <a href="{% url 'supplierIndex' %}">Proveedores</a>
-    <a href="{% url 'notificationIndex' %}">Enviar notificaciones</a>
+
 </body>
 </html>
