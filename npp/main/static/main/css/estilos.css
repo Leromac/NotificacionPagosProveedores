@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f2f2f2;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+}
+
+.contenedor {
+    width: 1200px;
+    margin: auto;
+    padding: 100px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 80px;
+    text-transform: uppercase;
+    color: #141414;
+    border: 5px solid #141414;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.contenedor-logo {
+    width: 50vh;
+    max-width: 1000px;
+    min-width: 320px;
+    margin: auto;
+}
+
+img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.contenedor-botones {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    background: #0922D9;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 23px;
+    font-weight: 550;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.4s ease all;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.boton.supplier span {
+    transition: .5s ease-in-out all;
+    position: absolute;
+    left: 35%;
+}
+
+.boton.supplier .icono {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    left: -40px;
+    transition: .5s ease-in-out all;
+    opacity: 0;
+}
+
+.boton.supplier svg {
+    color: #fff;
+    width: 35px;
+    height: 35px;
+}
+
+.boton:hover {
+    background: #d44705;
+}
+
+.boton.supplier:hover .icono {
+    left: calc(100% - 50px);
+    opacity: 1;
+}
+
+.boton.supplier:hover span {
+    left: 20px;
+}
+
+.boton.notification span {
+    transition: .5s ease-in-out all;
+    position: absolute;
+    left: 35%;
+}
+
+.boton.notification .icono {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    right: -40px;
+    transition: .5s ease-in-out all;
+    opacity: 0;
+}
+
+.boton.notification svg {
+    color: #fff;
+    width: 35px;
+    height: 35px;
+}
+
+.boton.notification:hover .icono {
+    right: calc(100% - 50px);
+    opacity: 1;
+}
+
+.boton.notification:hover span {
+    right: 20px;
+}
