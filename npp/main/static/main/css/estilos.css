@@ -27,7 +27,7 @@ h1 {
     margin-bottom: 80px;
     text-transform: uppercase;
     color: #141414;
-    border: 5px solid #141414;
+    border: 5px solid #003da6;
     padding: 5px 10px;
     display: inline-block;
 }
@@ -57,7 +57,7 @@ img {
     justify-content: center;
     width: 100%;
     height: 200px;
-    background: #0922D9;
+    background: #041a41;
     color: #fff;
     font-family: 'Roboto', sans-serif;
     font-size: 23px;
@@ -94,7 +94,7 @@ img {
 }
 
 .boton:hover {
-    background: #d44705;
+    background: #9e1e07;
 }
 
 .boton.supplier:hover .icono {
