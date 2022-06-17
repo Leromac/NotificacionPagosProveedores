@@ -14,16 +14,22 @@ def supplierIndex(request):
     )
 
 def addSupplier(request):
+    existSupplier = 1
     form = addSupplierForm()
     
     if request.method == 'POST':
         try:
-            form = addSupplierForm(request.POST)
-            form.save()
-            messages.success(request, "Datos Proveedor Guardados Correctamente %s " %form['taxIdentificationNumber'].value())
-        except: 
-            messages.error(request, "Hubo un error al guardar el artículo")
-        return redirect('getIndividualSupplier', form['taxIdentificationNumber'].value())
+            existSupplier = (supplier.objects.filter(taxIdentificationNumber=form['taxIdentificationNumber'].value()).filter(email=form['email'].value()).count())
+                        
+            if(existSupplier==0):
+                form = addSupplierForm(request.POST)
+                form.save()
+                messages.success(request, "Datos Proveedor Guardados Correctamente %s" %existSupplier)
+            else:
+                messages.error(request, "El correo electronico <(%s)> ya se encuentra agregado para este proveedor." %form['email'].value())
+        except BaseException as err: 
+            messages.error(request, "Hubo un error al guardar el artículo \n %s " %err)
+        #return redirect('getIndividualSupplier', form['taxIdentificationNumber'].value())
         #getIndividualSupplier(getIndividualSupplier, form['taxIdentificationNumber'].value())
     return render(
         request,
