@@ -18,4 +18,4 @@ class addSupplierForm(forms.ModelForm):
 
 class searchSupplierForm(forms.Form):
     taxIdentificationNumber = forms.CharField(label="Nit Proveedor", max_length=12)
-
+    

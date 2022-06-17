@@ -1,5 +1,6 @@
+from django.contrib import messages
+from django.shortcuts import render, redirect, get_object_or_404
 import email
-from django.shortcuts import render
 from .forms import searchSupplierForm, addSupplierForm
 from .models import supplier
 
@@ -16,10 +17,14 @@ def addSupplier(request):
     form = addSupplierForm()
     
     if request.method == 'POST':
-        form = addSupplierForm(request.POST)
-        
-        form.save()
-    
+        try:
+            form = addSupplierForm(request.POST)
+            form.save()
+            messages.success(request, "Datos Proveedor Guardados Correctamente %s " %form['taxIdentificationNumber'].value())
+        except: 
+            messages.error(request, "Hubo un error al guardar el artículo")
+        return redirect('getIndividualSupplier', form['taxIdentificationNumber'].value())
+        #getIndividualSupplier(getIndividualSupplier, form['taxIdentificationNumber'].value())
     return render(
         request,
         'addSupplier.html',
@@ -36,4 +41,13 @@ def searchSupplier(request):
         request,
         'searchSupplier.html',
         {'formSearchSupplier': form}
+    )
+    
+def getIndividualSupplier(request, taxIdentificationNumber):
+    individualSupplierList = supplier.objects.filter(taxIdentificationNumber=taxIdentificationNumber)
+    
+    return render(
+        request,
+        'getSupplier.html',
+        {'dataGetSupplier': individualSupplierList}
     )
