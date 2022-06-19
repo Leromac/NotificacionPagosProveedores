@@ -47,15 +47,16 @@ img {
 .contenedor-botones {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 40px;
+    margin-left: 850px;
 }
 
 .boton {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 50%;
     height: 200px;
     background: #003da6;
     color: #fff;
@@ -71,45 +72,10 @@ img {
     overflow: hidden;
 }
 
-.boton.supplier span {
-    transition: .5s ease-in-out all;
-    position: absolute;
-    left: 35%;
-}
-
-.boton.supplier .icono {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    z-index: 2;
-    left: -40px;
-    transition: .5s ease-in-out all;
-    opacity: 0;
-}
-
-.boton.supplier svg {
-    color: #fff;
-    width: 35px;
-    height: 35px;
-}
-
-.boton:hover {
-    background: #cc3115;
-}
-
-.boton.supplier:hover .icono {
-    left: calc(100% - 50px);
-    opacity: 1;
-}
-
-.boton.supplier:hover span {
-    left: 20px;
-}
-
 .boton.notification span {
     transition: .5s ease-in-out all;
     position: absolute;
-    left: 35%;
+    left: 45%;
 }
 
 .boton.notification .icono {
@@ -117,7 +83,7 @@ img {
     align-items: center;
     position: absolute;
     z-index: 2;
-    right: -40px;
+    left: -35px;
     transition: .5s ease-in-out all;
     opacity: 0;
 }
@@ -128,11 +94,15 @@ img {
     height: 35px;
 }
 
+.boton:hover {
+    background: #cc3115;
+}
+
 .boton.notification:hover .icono {
-    right: calc(100% - 50px);
+    left: calc(100% - 50px);
     opacity: 1;
 }
 
 .boton.notification:hover span {
-    right: 20px;
+    left: 20px;
 }
