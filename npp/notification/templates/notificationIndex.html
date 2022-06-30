@@ -1,14 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notificacion Pagos Proveedores</title>
-</head>
-<body>
+{% extends "baseTemplateNotification.html" %}
+{% block title %}
+    <title>Send Notification</title>
+{% endblock %}
+{% block content %}
     <h1>>>>> Notification Zone <<<<</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ formSendNotification.as_p }} 
+        <input type="submit" value="Enviar Notificaciones" />
+    </form>
+{% endblock %}
 
+{% block menu %}
     <a href="{% url 'index' %}">Home</a>
-</body>
-</html>
+{% endblock %}
+
+{% block messages %}
+    {% if messages %}
+        {% for message in messages %}
+            <h1>{{ message }}</h1> <br>
+        {% endfor %}
+        {{messages.clear}}
+    {% endif %}
+{% endblock %}
