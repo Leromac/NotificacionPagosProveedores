@@ -4,21 +4,25 @@
     <title>Get Supplier</title>
 {% endblock %}
 {% block content %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ formAddSupplier.as_p }} 
-        <input type="submit" value="Guardar" />
-    </form>
+    {% csrf_token %}
+    <h2>Informacion Proveedor</h2>
+    <p><strong>{{ listEmailSupplier.0.taxIdentificationNumber }} -- {{ listEmailSupplier.0.companyName }}</strong></p>
+    <p>Email registrados para notificacion:</p>
+    <ul>
+    {% for supplier in listEmailSupplier%}
+        <li>{{ supplier.email }} </li>
+    {% endfor %}
+    </ul>
 {% endblock %}
-
+<br>
 {% block menu %}
     <a href="{% url 'supplierIndex' %}">Back</a>
 {% endblock %}
-
 {% block messages %}
     {% if messages %}
         {% for message in messages %}
             <h1>{{ message }}</h1> <br>
         {% endfor %}
+        {{messages.clear}}
     {% endif %}
 {% endblock %}

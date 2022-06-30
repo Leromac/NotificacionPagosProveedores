@@ -14,3 +14,12 @@
 {% block menu %}
     <a href="{% url 'supplierIndex' %}">Back</a>
 {% endblock %}
+
+{% block messages %}
+    {% if messages %}
+        {% for message in messages %}
+            <h1>{{ message }}</h1> <br>
+        {% endfor %}
+        {{messages.clear}}
+    {% endif %}
+{% endblock %}

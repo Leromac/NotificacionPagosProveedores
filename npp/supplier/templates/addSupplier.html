@@ -20,5 +20,6 @@
         {% for message in messages %}
             <h1>{{ message }}</h1> <br>
         {% endfor %}
+        {{messages.clear}}
     {% endif %}
 {% endblock %}
