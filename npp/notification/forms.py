@@ -10,5 +10,5 @@ class sendNotificationForm(forms.ModelForm):
             'baseFile',
             ]
         labels = {
-            'baseFile': ('Archivo Plano a Procesar '),
+            'baseFile': ('Archivo .csv a procesar '),
             }
