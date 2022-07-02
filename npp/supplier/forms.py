@@ -16,6 +16,14 @@ class addSupplierForm(forms.ModelForm):
             'email': ('Email Envio Notificaciones '),
             }
 
-class searchSupplierForm(forms.Form):
-    taxIdentificationNumber = forms.CharField(label="Nit Proveedor", max_length=12)
+class searchSupplierForm(forms.ModelForm):
+    #taxIdentificationNumber = forms.CharField(label="Nit Proveedor", max_length=12)
+    class Meta:
+        model = supplier
+        fields = [
+            'taxIdentificationNumber',
+            ]
+        labels = {
+            'taxIdentificationNumber': ('Nit Proveedor '),
+            }
     
