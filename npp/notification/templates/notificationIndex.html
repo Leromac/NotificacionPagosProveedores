@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
     <h1>>>>> Notification Zone <<<<</h1>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data"s>
         {% csrf_token %}
         {{ formSendNotification.as_p }} 
         <input type="submit" value="Enviar Notificaciones" />
