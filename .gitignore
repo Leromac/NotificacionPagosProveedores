@@ -1,2 +1,4 @@
 ve/
 .env
+npp/upload
+db.sqlite3
