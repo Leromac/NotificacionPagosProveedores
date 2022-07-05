@@ -24,10 +24,8 @@ def notificationIndex(request):
 
                 readFile(newFiletoProcess.baseFile)
 
-                messages.success(request, "Archivo recibido para procesamiento. \n Nombre Archivo:  (%s)" %newFiletoProcess.baseFile)
-                   
         except BaseException as err: 
-            messages.error(request, "1 Error al consultar los datos \n %s " %err)
+            messages.error(request, "Error al consultar los datos \n %s " %err)
             
         return render(
             request,
