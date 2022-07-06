@@ -1,8 +1,7 @@
 {% extends "baseTemplateNotification.html" %}
 
 {% block content %}
-    {% csrf_token %}
-    <h3>Industrias Astivik le informa, que se realizo una transferencia el dia " + {{ NotificacionMessage.0.transactionDate }} + " a su cuenta bancaria No " + {{NotificacionMessage.0.accountNumber}} + "</h3>
+    <h3>Industrias Astivik le informa, que se realizo una transferencia el dia <u>{{ NotificacionMessage.0.transactionDate }}</u> a su cuenta bancaria No <u>{{NotificacionMessage.0.accountNumber}}</u></h3>
     <p>Las facturas pagadas fueron las siguientes:</p>
     <table BORDER bordercolor="black" CELLPADDING=10 CELLSPACING=0>
         <tr>
