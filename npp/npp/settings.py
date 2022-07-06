@@ -22,10 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-r5==xh*-m0(g%^p9!c8f#ky61-!2h+@8iqp!=8*!=zjpf0butr'
+#SECRET_KEY = 'django-insecure-r5==xh*-m0(g%^p9!c8f#ky61-!2h+@8iqp!=8*!=zjpf0butr'
+SECRET_KEY = config('SECRET_KEY_DJANGO_APP')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -118,6 +120,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+DATE_INPUT_FORMATS = ['%d/%m/%Y']
 
 
 # Static files (CSS, JavaScript, Images)

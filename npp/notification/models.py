@@ -2,6 +2,7 @@ from asyncio.windows_events import NULL
 from django.db import models
 import csv
 import random
+from datetime import datetime
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from supplier.models import supplier
@@ -18,33 +19,21 @@ class notificationContent(models.Model):
     accountNumber = models.CharField(name="accountNumber", max_length=50)
     transactionDate = models.DateField(name="transactionDate")
     transactionDocumentType = models.CharField(name="transactionDocumentType", max_length=100)
-    icaRetention = models.FloatField(name="icaRetention")
-    ivaRetention = models.FloatField(name="ivaRetention")
-    rentaRetention = models.FloatField(name="rentaRetention")
-    amountPaid = models.FloatField(name="amountPaid")
-    totalValueInvoice = models.FloatField(name="totalValueInvoice")
+    icaRetention = models.CharField(name="icaRetention", max_length=20)
+    ivaRetention = models.CharField(name="ivaRetention", max_length=20)
+    rentaRetention = models.CharField(name="rentaRetention", max_length=20)
+    amountPaid = models.CharField(name="amountPaid", max_length=20)
+    totalValueInvoice = models.CharField(name="totalValueInvoice", max_length=20)
     note = models.CharField(name="note", max_length=1000)
 
-    def __init__(self, customId, taxIdentificationNumber, accountNumber, transactionDate, transactionDocumentType, icaRetention, ivaRetention, rentaRetention, amountPaid, totalValueInvoice, note):
-        self.customId = customId
-        self.taxIdentificationNumber = taxIdentificationNumber
-        self.accountNumber = accountNumber
-        self.transactionDate = transactionDate
-        self.transactionDocumentType = transactionDocumentType
-        self.icaRetention = icaRetention
-        self.ivaRetention = ivaRetention
-        self.rentaRetention = rentaRetention
-        self.amountPaid = amountPaid
-        self.totalValueInvoice = totalValueInvoice
-        self.note = note
-
 def readFile (fileName):
-    notificationCustomId = random()
     controlList = []
-    #sendList = []
     nc = notificationContent()
 
     try:
+        notificationCustomId = str(random.random())
+        notificationCustomId.lstrip("0.")
+        
         with open('upload\%s' %fileName) as csvarchivo:
             entrada = csv.reader(csvarchivo)
             next(entrada, None)
@@ -55,7 +44,7 @@ def readFile (fileName):
                 nc.customId = notificationCustomId
                 nc.taxIdentificationNumber = reg[0]
                 nc.accountNumber = reg[1]
-                nc.transactionDate = reg[2]
+                nc.transactionDate = datetime.strptime(reg[2], '%d/%m/%Y')
                 nc.transactionDocumentType = reg[3]
                 nc.icaRetention = reg[4]
                 nc.ivaRetention = reg[5]
@@ -88,15 +77,15 @@ def readFile (fileName):
             #textoEnvio += "</table><br></br></p>Agradecemos distribuir esta informacion al personal de su empresa que le puedan ser util estos datos.</p>"
             #textoEnvio += "<br></br><footer><strong>POR FAVOR NO RESPONDER A ESTA CUENTA DE CORREO, NADIE MONITOREA ESTOS MENSAJES Y SE ELIMINAN AUTOMATICAMENTE.</strong></footer>"
             #listaEnvio.append(textoEnvio)
-            sentNotification(notificationCustomId)
+            sentNotification(notificationCustomId, controlList)
     except Exception as ex:
-            print ("Error al leer el archivo .csv \n %s " % (ex))
+        print ("Error al leer el archivo .csv %s " % (ex))
     
     return True
     
-def sentNotification(notificationCustomId):
+def sentNotification(notificationCustomId, supplierTaxIdentificationNumberList):
     try:
-        supplierTaxIdentificationNumberList =  notificationContent.objects.filter(customId="%s" %notificationCustomId).distinct('taxIdentificationNumber')
+        #supplierTaxIdentificationNumberList =  notificationContent.objects.filter(customId="%s" %notificationCustomId).distinct('taxIdentificationNumber')
          
         for i in range(len(supplierTaxIdentificationNumberList)):
             operationList = supplier.objects.filter(taxIdentificationNumber="%s" % supplierTaxIdentificationNumberList[i])
