@@ -63,8 +63,6 @@ def readFile (fileName):
     except Exception as ex:
         print ("Error al leer el archivo .csv %s " % (ex))
     
-    return True
-    
 def sentNotification(notificationCustomId, supplierTaxIdentificationNumberList):
     try:
         #supplierTaxIdentificationNumberList =  notificationContent.objects.filter(customId="%s" %notificationCustomId).distinct('taxIdentificationNumber')
@@ -99,8 +97,6 @@ def sentNotification(notificationCustomId, supplierTaxIdentificationNumberList):
     except Exception as ex:
         print ("Error al realizar accion en la base de datos \n %s " % (ex))
 
-    return True
-
 
 def sendMail(body, to):
     try:
@@ -122,5 +118,3 @@ def sendMail(body, to):
         message.send()
     except Exception as ex:
         print ("Error al enviar correo \n %s " % (ex))
-
-    return True
