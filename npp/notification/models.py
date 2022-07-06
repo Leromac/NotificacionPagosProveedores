@@ -60,6 +60,7 @@ def readFile (fileName):
                     controlList.append(reg[0])
                     
             sentNotification(notificationCustomId, controlList)
+            sentNotificationToControl(notificationCustomId, controlList)
     except Exception as ex:
         print ("Error al leer el archivo .csv %s " % (ex))
     
@@ -97,6 +98,28 @@ def sentNotification(notificationCustomId, supplierTaxIdentificationNumberList):
     except Exception as ex:
         print ("Error al realizar accion en la base de datos \n %s " % (ex))
 
+def sentNotificationToControl(notificationCustomId, supplierTaxIdentificationNumberList):
+    try:
+        #supplierTaxIdentificationNumberList =  notificationContent.objects.filter(customId="%s" %notificationCustomId).distinct('taxIdentificationNumber')
+         
+        for i in range(len(supplierTaxIdentificationNumberList)):
+            operationList = supplier.objects.filter(taxIdentificationNumber="%s" % supplierTaxIdentificationNumberList[i])
+            contentList = notificationContent.objects.filter(customId="%s" %notificationCustomId).filter(taxIdentificationNumber="%s" %supplierTaxIdentificationNumberList[i])
+            
+            for filas in operationList:
+                if not filas:
+                    pass
+                    
+                else:
+                    if(filas.email != ""):
+                        try:
+                            sendMail(contentList, filas.email)
+                        except Exception as ex:
+                            print ("Error al enviar notificacion %s %s" % ((supplierTaxIdentificationNumberList[i]), ex))
+                    else:
+                        pass
+    except Exception as ex:
+        print ("Error al realizar accion en la base de datos \n %s " % (ex))
 
 def sendMail(body, to):
     try:
