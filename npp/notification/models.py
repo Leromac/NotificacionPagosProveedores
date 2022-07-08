@@ -1,4 +1,5 @@
 from asyncio.windows_events import NULL
+import email
 from django.db import models
 import csv
 import random
@@ -28,6 +29,9 @@ class notificationContent(models.Model):
     totalValueInvoice = models.CharField(name="totalValueInvoice", max_length=20)
     note = models.CharField(name="note", max_length=1000)
 
+class controlEmails(models.Model):
+    email = models.CharField(name="email", max_length=100)
+    
 def readFile (fileName):
     controlList = []
     
@@ -60,7 +64,7 @@ def readFile (fileName):
                     controlList.append(reg[0])
                     
             sentNotification(notificationCustomId, controlList)
-            sentNotificationToControl(notificationCustomId, controlList)
+            sentNotificationToControl(notificationCustomId)
     except Exception as ex:
         print ("Error al leer el archivo .csv %s " % (ex))
     
@@ -72,60 +76,51 @@ def sentNotification(notificationCustomId, supplierTaxIdentificationNumberList):
             operationList = supplier.objects.filter(taxIdentificationNumber="%s" % supplierTaxIdentificationNumberList[i])
             contentList = notificationContent.objects.filter(customId="%s" %notificationCustomId).filter(taxIdentificationNumber="%s" %supplierTaxIdentificationNumberList[i])
             
-            
-            x=0
-            
             for filas in operationList:
                 if not filas:
                     pass
-                    #noEnviado+= "</br>"+(filas[x].nit)+" -- "+(filas[x+1].nombre)
-                    #print ("NO SE PUDO ENVIAR CORREO A %s " % ((filas[x].nit)+" -- "+(filas[x+1].nombre)))
                 else:
                     if(filas.email != ""):
-                        #+=1
                         try:
-                            sendMail(contentList, filas.email)
-                            #models.envioCorreo("no-reply@astivik.com", (filas[x+2].email), listaEnvio[i])
-                            #textoEnvioControl += "<tr><td ALIGN=center>" + str(y) + "</td><td ALIGN=left>" + (filas[x+1].nombre) + "</td><td ALIGN=left>" + (filas[x+2].email) + "</td></tr>"
-                            #print ("enviado A %s " % ((filas[x].nit)+" -- "+(filas[x+1].nombre)))
+                            sendMail(contentList, filas.email, 0)
                         except Exception as ex:
                             print ("Error al enviar notificacion %s %s" % ((supplierTaxIdentificationNumberList[i]), ex))
                     else:
                         pass
-                        #noEnviado+= "</br>"+(filas[x].nit)+" -- "+(filas[x+1].nombre+"</br>")
-                                        
-                x+=3
     except Exception as ex:
         print ("Error al realizar accion en la base de datos \n %s " % (ex))
 
-def sentNotificationToControl(notificationCustomId, supplierTaxIdentificationNumberList):
+def sentNotificationToControl(notificationCustomId):
     try:
         #supplierTaxIdentificationNumberList =  notificationContent.objects.filter(customId="%s" %notificationCustomId).distinct('taxIdentificationNumber')
          
-        for i in range(len(supplierTaxIdentificationNumberList)):
-            operationList = supplier.objects.filter(taxIdentificationNumber="%s" % supplierTaxIdentificationNumberList[i])
-            contentList = notificationContent.objects.filter(customId="%s" %notificationCustomId).filter(taxIdentificationNumber="%s" %supplierTaxIdentificationNumberList[i])
+        #for i in range(len(supplierTaxIdentificationNumberList)):
+        operationList = operationList = controlEmails.objects.all()
+        contentList = notificationContent.objects.filter(customId="%s" %notificationCustomId)
             
-            for filas in operationList:
-                if not filas:
-                    pass
-                    
+        for filas in operationList:
+            if not filas:
+                pass
+            else:
+                if(filas.email != ""):
+                    try:
+                        sendMail(contentList, filas.email, 1)
+                    except Exception as ex:
+                        print ("Error al enviar notificacion de control")
                 else:
-                    if(filas.email != ""):
-                        try:
-                            sendMail(contentList, filas.email)
-                        except Exception as ex:
-                            print ("Error al enviar notificacion %s %s" % ((supplierTaxIdentificationNumberList[i]), ex))
-                    else:
-                        pass
+                    pass
     except Exception as ex:
         print ("Error al realizar accion en la base de datos \n %s " % (ex))
 
-def sendMail(body, to):
+def sendMail(body, to, templatechoice):
     try:
-        subject = 'Astivik S.A. -- Notificación Pagos Realizados.'
-        template = get_template('emailMessage.html')
-
+        if(templatechoice == 0):
+            subject = 'Astivik S.A. -- Notificación Pagos Realizados.'
+            template = get_template('emailMessage.html')
+        else:
+            subject = 'Astivik S.A. -- Control Envio Notificación Pagos Realizados a Proveedores.'
+            template = get_template('emailMessageToControl.html')
+        
         content = template.render({
             'NotificacionMessage': body,
         })

@@ -1,0 +1,35 @@
+{% extends "baseTemplateNotification.html" %}
+
+{% block content %}
+    <h3>Se envio notificacion de pagos por correo electronico a los siguientes proveedores:</h3>
+    <table BORDER bordercolor="black" CELLPADDING=10 CELLSPACING=0>
+        <tr>
+            <th>RAZON SOCIAL PROVEEDOR</th>
+            <th>EMAIL NOTIFICACION</th>
+            <th>No FACTURA</th>
+            <th>VALOR NETO FACTURA</th>
+            <th>VALOR RET ICA</th>
+            <th>VALOR RET IVA</th>
+            <th>VALOR RET RENTA</th>
+            <th>VALOR PAGADO</th>
+            <th>NOTA</th>
+        </tr>
+    {% for notificationContent in NotificacionMessage %}
+        <tr>
+            <th>{{ notificationContent.transactionDocumentType }} </th>
+            <th>{{ notificationContent.totalValueInvoice }} </th>
+            <th>{{ notificationContent.icaRetention }} </th>
+            <th>{{ notificationContent.ivaRetention }} </th>
+            <th>{{ notificationContent.rentaRetention }} </th>
+            <th>{{ notificationContent.amountPaid }} </th>
+            <th>{{ notificationContent.note }} </th>
+        </tr>
+        
+    {% endfor %}
+    </table>
+{% endblock %}
+
+{% block footer %}
+    <p>Agradecemos distribuir esta informacion al personal de su empresa que le puedan ser util estos datos.</p>
+    <footer><strong>POR FAVOR NO RESPONDER A ESTA CUENTA DE CORREO, NADIE MONITOREA ESTOS MENSAJES Y SE ELIMINAN AUTOMATICAMENTE.</strong></footer>
+{% endblock %}
