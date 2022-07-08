@@ -5,7 +5,7 @@
     <table BORDER bordercolor="black" CELLPADDING=10 CELLSPACING=0>
         <tr>
             <th>RAZON SOCIAL PROVEEDOR</th>
-            <th>EMAIL NOTIFICACION</th>
+            <th>EMAIL DE NOTIFICACION</th>
             <th>No FACTURA</th>
             <th>VALOR NETO FACTURA</th>
             <th>VALOR RET ICA</th>
@@ -16,8 +16,8 @@
         </tr>
     {% for notificationContent in NotificacionMessage %}
         <tr>
-            <th>{{  }} </th>
-            <th>{{  }} </th>
+            <th> 1 </th>
+            <th> 2 </th>
             <th>{{ notificationContent.transactionDocumentType }} </th>
             <th>{{ notificationContent.totalValueInvoice }} </th>
             <th>{{ notificationContent.icaRetention }} </th>
