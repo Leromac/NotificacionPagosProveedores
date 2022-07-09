@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f2f2f2;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+}
+
+.contenedor {
+    width: 800px;
+    margin: auto;
+    padding: 100px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+h1 {
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    color: #141414;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+h3 {
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    color: #141414;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.contenedor-logo {
+    width: 50vh;
+    max-width: 1000px;
+    min-width: 320px;
+    margin: auto;
+}
+
+img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.contenedor-botones {
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.contenedor-botones2 {
+    width: 40%;
+    display: grid;
+    align-content: center;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+}
+
+.boton {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 100px;
+    background: #003da6;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 550px;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.4s ease all;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.boton.addSupplier span {
+    transition: .5s ease-in-out all;
+    position: absolute;
+    left: 35%;
+}
+
+.boton.addSupplier .icono {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    right: -40px;
+    transition: .5s ease-in-out all;
+    opacity: 0;
+}
+
+.boton.addSupplier svg {
+    color: #fff;
+    width: 35px;
+    height: 35px;
+}
+
+.boton:hover {
+    background: #cc3115;
+}
+
+.boton.indexp:hover {
+    background: #003da6;
+}
+
+.boton.indexp {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 150px;
+    background: #cc3115;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 550px;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.4s ease all;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.boton.addSupplier {
+    width: 200px;
+    height: 120px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 150px 0 0 -180px;
+}
+
+.boton.addSupplier:hover .icono {
+    right: calc(100% - 50px);
+    opacity: 1;
+}
+
+.boton.notification:hover span {
+    left: 20px;
+}
+
+.boton.searchp {
+    width: 200px;
+    height: 120px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 150px 0 0 125px;
+}
+
+.boton.searchp span {
+    transition: .5s ease-in-out all;
+    position: absolute;
+    left: 32%;
+}
+
+.boton.searchp .icono {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    right: -40px;
+    transition: .5s ease-in-out all;
+    opacity: 0;
+}
+
+.boton.searchp svg {
+    color: #fff;
+    width: 35px;
+    height: 35px;
+}
+
+.boton.searchp:hover .icono {
+    right: calc(100% - 50px);
+    opacity: 1;
+}
+
+.boton.notification:hover span {
+    right: 20px;
+}
+
+.boton.indexp {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 300px 0 0 -25px;
+}
+
+.boton.indexp span {
+    transition: .5s ease-in-out all;
+    position: absolute;
+    left: 45%;
+}
+
+.boton.indexp .icono {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    right: -40px;
+    transition: .5s ease-in-out all;
+    opacity: 0;
+}
+
+.boton.indexp svg {
+    color: #fff;
+    width: 35px;
+    height: 35px;
+}
+
+.boton.indexp:hover .icono {
+    right: calc(100% - 50px);
+    opacity: 1;
+}
+
+.boton.notification:hover span {
+    right: 20px;
+}

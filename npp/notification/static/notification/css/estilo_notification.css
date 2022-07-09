@@ -49,7 +49,7 @@ img {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 40px;
-    margin-left: 850px;
+    margin-left: 550px;
 }
 
 .boton {
@@ -58,7 +58,7 @@ img {
     justify-content: center;
     width: 50%;
     height: 200px;
-    background: #003da6;
+    background: #cc3115;
     color: #fff;
     font-family: 'Roboto', sans-serif;
     font-size: 23px;
@@ -95,7 +95,7 @@ img {
 }
 
 .boton:hover {
-    background: #cc3115;
+    background: #003da6;
 }
 
 .boton.notification:hover .icono {
